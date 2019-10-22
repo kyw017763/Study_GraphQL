@@ -3,7 +3,7 @@ import resolvers from "./graphql/resolver"
 // import serveStatic from "serve-static";
 
 const server = new GraphQLServer({
-    typeDefs: "graphql/schemaMovie.graphql",
+    typeDefs: "graphql/schemaApi.graphql",
     resolvers
 });
 

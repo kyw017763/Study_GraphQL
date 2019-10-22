@@ -1,6 +1,15 @@
-import { movies, deleteMovie } from "./dbMovie"
+import { getMovies, getMoviesBy } from "./dbApi";
 
-// import { people } from "./dbPerson"
+// import { movies, deleteMovie } from "./dbMovie";
+
+// import { people } from "./dbPerson";
+
+const resolvers = {
+    Query: {
+        movies: () => getMovies(),
+        moviesBy: (_, {limit, rating}) => getMoviesBy(limit, rating)
+    }
+};
 
 // const resolvers = {
 //     Query: {
@@ -13,23 +22,23 @@ import { movies, deleteMovie } from "./dbMovie"
 //     }
 // };
 
-const resolvers = {
-    Query: {
-        movies: () => movies,
-        movie: (_, { id }) =>  movies.filter(movie => id === movie.id)[0]
-    },
-    Mutation: {
-        addMovie: (_, {name, score}) => {
-            const movieItem = {
-                id: movies.length,
-                name,
-                score
-            }
-            movies.push(movieItem);
-            return movieItem;
-        },
-        deleteMovie: (_, { id }) => deleteMovie(id)
-    }
-};
+// const resolvers = {
+//     Query: {
+//         movies: () => movies,
+//         movie: (_, { id }) =>  movies.filter(movie => id === movie.id)[0]
+//     },
+//     Mutation: {
+//         addMovie: (_, {name, score}) => {
+//             const movieItem = {
+//                 id: movies.length,
+//                 name,
+//                 score
+//             }
+//             movies.push(movieItem);
+//             return movieItem;
+//         },
+//         deleteMovie: (_, { id }) => deleteMovie(id)
+//     }
+// };
 
 export default resolvers;
