@@ -1,15 +1,22 @@
-import { getMovies, getMoviesBy } from "./dbApi";
-
+import {getMovies, getMovie, getSuggestions} from "./dbEnhancedApi";
+// import { getMovies, getMoviesBy } from "./dbApi";
 // import { movies, deleteMovie } from "./dbMovie";
-
 // import { people } from "./dbPerson";
 
 const resolvers = {
     Query: {
-        movies: () => getMovies(),
-        moviesBy: (_, {limit, rating}) => getMoviesBy(limit, rating)
+        movies: (_, {limit, rating}) => getMovies(limit, rating),
+        movie: (_, {id}) => getMovie(id),
+        suggestions: (_, {id}) => getSuggestions(id)
     }
 };
+
+// const resolvers = {
+//     Query: {
+//         movies: () => getMovies(),
+//         moviesBy: (_, {limit, rating}) => getMoviesBy(limit, rating)
+//     }
+// };
 
 // const resolvers = {
 //     Query: {
